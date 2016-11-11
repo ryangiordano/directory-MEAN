@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { EmployeeService} from '../shared/services/employee.service';
 import { Employee} from '../shared/models/employee';
 import { EmployeeComponent} from '../employee/employee.component';
@@ -26,15 +26,18 @@ export class HomeComponent implements OnInit {
       },
       error=>console.error(error),
       // error=>this._errorService.handleError(error),
-      ()=>console.log("completed")
+      // ()=>{}
     )
     this.subscription = this._employeeService.employees$.subscribe(
       employees=>{
-        console.log(employees)
+        console.log(employees);
           this.employees = employees;
       },
       error=>{console.error(error)}
     );
+  }
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

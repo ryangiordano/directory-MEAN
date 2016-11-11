@@ -20,7 +20,6 @@ export class SearchComponent implements OnInit {
   form: FormGroup
 
   constructor(private _employeeService: EmployeeService) {
-    console.log(this.search)
     this.search.valueChanges
       .debounceTime(1000)
       .distinctUntilChanged()
@@ -29,7 +28,7 @@ export class SearchComponent implements OnInit {
         this._employeeService.searchEmployees(searchTerm)
           .subscribe(
           data => {
-            console.log(data)
+            // console.log(data)
             this.searchResults = data;
             this._employeeService.employees = data;
           },

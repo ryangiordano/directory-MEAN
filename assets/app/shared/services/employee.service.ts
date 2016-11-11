@@ -20,7 +20,6 @@ employees$ = this.employeesSource.asObservable();
     return this._http.get('/employees-api')
     .map(response=>{
       const data = response.json().obj;
-      console.log("mapping");
       let objs:any[]=[];
       for(let i =0; i<data.length; i++){
           let employee = new Employee(data[i].firstName, data[i].lastName,data[i].email, data[i].phone,data[i].title,data[i].branch,data[i].picture,data[i]._id);
